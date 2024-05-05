@@ -13,11 +13,15 @@ export class ApiHelperService {
   ) { }
 
   getSampleData() {
-    return this.http.get(this.BASE_API_URL+"get-blogs");
+    return this.http.get(this.BASE_API_URL+"blogs");
   }
 
   getBlogs() {
-    return this.http.get<{data:BlogData[]}>(this.BASE_API_URL+"get-blogs");
+    return this.http.get<{data:BlogData[]}>(this.BASE_API_URL+"blogs");
+  }
+
+  getSingleBlog(id: string) {
+    return this.http.get<BlogData>(this.BASE_API_URL+'blogs/'+id);
   }
 
 }

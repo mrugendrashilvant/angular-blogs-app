@@ -1,1 +1,11 @@
-<p>single-blog works!</p>
+<ng-container *ngIf="blog">
+    <h1>{{blog.title}}</h1>
+    <div>
+        <span *ngFor="let tag of blog.hashTags; let last = last">
+            {{tag}}<span *ngIf="!last">,</span>
+        </span>
+    </div>
+    <div>
+        {{blog.blogContent}}
+    </div>
+</ng-container>

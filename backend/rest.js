@@ -19,13 +19,24 @@ app.use((req,res,next)=>{
     next();
 })
 
-app.get("/get-blogs",(req, res, next)=>{
+app.get("/blogs",(req, res, next)=>{
     BlogModel.find()
     .then((data)=>{
         res.status(200).json({data: data});
     })
     .catch((err)=> {
         res.status(500).json({message: "Something went wrong!"})
+    })
+})
+
+app.get("/blogs/:id", (req, res)=>{
+    BlogModel.findOne({_id: req.params.id})
+    .then((data)=>{
+        res.status(200).json(data)
+    })
+    .catch((err)=>{
+        res.status(500).json({message: "Something went wrong!"})
+        throw new Error(err);
     })
 })
 
