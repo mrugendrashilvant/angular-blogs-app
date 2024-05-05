@@ -5,8 +5,8 @@
                 <mat-card-header>
                   <mat-card-title>{{blog.title}}</mat-card-title>
                   <mat-card-subtitle>
-                    <span *ngFor="let tag of blog.hashTags">
-                        {{tag}},
+                    <span *ngFor="let tag of blog.hashTags; let last = last">
+                        {{tag}}<span *ngIf="!last">,</span>
                     </span>
                   </mat-card-subtitle>
                 </mat-card-header>
