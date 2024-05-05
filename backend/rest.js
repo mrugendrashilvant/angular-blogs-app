@@ -7,9 +7,10 @@ mongoose.connect("mongodb+srv://mrugendrashilvant16:4sf1RqPBT1vYUPiX@cluster0.km
 .catch((err)=>{
     console.log("MongoDB Connection Failed!");
     throw new Error(err);
-})
+});
 
 const app = express();
+const BlogModel = require("./schema");
 
 app.use((req,res,next)=>{
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -19,6 +20,15 @@ app.use((req,res,next)=>{
 })
 
 app.use("/get-blogs",(req, res, next)=>{
+    const newBlog = new BlogModel({
+        title: "Title 1",
+        blogContent: "Content 1",
+        hashTags: ["DSA", "Angular", "NodeJS"],
+        created: new Date(),
+        image: "123.png",
+        likes: 0
+    });
+    newBlog.save();
     res.json({
         "data": [{
             id: 1,
