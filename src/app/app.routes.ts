@@ -4,5 +4,9 @@ export const routes: Routes = [
     {
         path: "",
         loadComponent: ()=>import('./components/home/home.component').then(c=>c.HomeComponent)
+    },
+    {
+        path: ":id",
+        loadComponent: ()=> import('./components/single-blog/single-blog.component').then(c=>c.SingleBlogComponent)
     }
 ];
