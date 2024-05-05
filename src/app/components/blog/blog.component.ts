@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { ApiHelperService } from "../../service/api-helper.service";
 
 @Component({
     selector: "app-blog",
@@ -8,13 +7,11 @@ import { ApiHelperService } from "../../service/api-helper.service";
     standalone: true
 })
 export class BlogComponent implements OnInit {
-    constructor(private apiHelper: ApiHelperService) {
+    constructor() {
 
     }
 
     ngOnInit(): void {
-        this.apiHelper.getSampleData().subscribe((data:any) => {
-            console.log(data);
-        })
+
     }
 }

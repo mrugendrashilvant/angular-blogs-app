@@ -19,22 +19,13 @@ app.use((req,res,next)=>{
     next();
 })
 
-app.use("/get-blogs",(req, res, next)=>{
-    const newBlog = new BlogModel({
-        title: "Title 1",
-        blogContent: "Content 1",
-        hashTags: ["DSA", "Angular", "NodeJS"],
-        created: new Date(),
-        image: "123.png",
-        likes: 0
-    });
-    newBlog.save();
-    res.json({
-        "data": [{
-            id: 1,
-            title: "Title",
-            blog: "This is blog for the Title"
-        }]
+app.get("/get-blogs",(req, res, next)=>{
+    BlogModel.find()
+    .then((data)=>{
+        res.status(200).json({data: data});
+    })
+    .catch((err)=> {
+        res.status(500).json({message: "Something went wrong!"})
     })
 })
 
