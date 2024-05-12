@@ -1,4 +1,25 @@
 <mat-dialog-content>
     <h3 mat-dialog-title>Create Blog</h3>
     <mat-divider></mat-divider>
-</mat-dialog-content>
+    <form [formGroup]="blogForm" (ngSubmit)="onSubmit($event)">
+        <mat-form-field class="w-full mb-3">
+            <mat-label>Title</mat-label>
+            <input formControlName="title" matInput placeholder="Enter Title here..">
+          </mat-form-field>
+          <mat-form-field class="w-full mb-3">
+            <mat-label>Tags</mat-label>
+            <input formControlName="tags" matInput placeholder="Enter Tags in comma seperated format">
+          </mat-form-field>
+          <mat-form-field class="w-full mb-3">
+            <mat-label>Content</mat-label>
+            <textarea rows="5" formControlName="content" matInput placeholder="Type your content here..."></textarea>
+          </mat-form-field>
+          <div class="mb-4">
+            <input formControlName="image" type="file" required />
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <button class="w-full" mat-stroked-button color="warn" type="button">Cancel</button>
+            <button class="w-full" mat-flat-button color="primary" type="submit">Save</button>
+          </div>
+    </form>
+</mat-dialog-content> 
