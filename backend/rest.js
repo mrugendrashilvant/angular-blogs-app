@@ -10,6 +10,7 @@ mongoose.connect("mongodb+srv://mrugendrashilvant16:4sf1RqPBT1vYUPiX@cluster0.km
 });
 
 const app = express();
+app.use(express.json());
 const BlogModel = require("./schema");
 
 app.use((req,res,next)=>{
@@ -27,6 +28,24 @@ app.get("/blogs",(req, res, next)=>{
     .catch((err)=> {
         res.status(500).json({message: "Something went wrong!"})
     })
+})
+
+app.post("/blogs", async(req,res)=>{
+    try{
+        const blog = new BlogModel({
+            title: req.body.title,
+            blogContent: req.body.blogContent,
+            image: req.body.image,
+            hashTags: req.body.hashTags,
+            likes: 0,
+            created: new Date()
+        })
+        await blog.save();
+        res.status(200).json(blog);
+    }
+    catch {
+        res.status(500).json({message: "Something went wrong!"})
+    }
 })
 
 app.get("/blogs/:id", (req, res)=>{

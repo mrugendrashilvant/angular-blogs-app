@@ -6,6 +6,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
+import { ApiHelperService } from '../../service/api-helper.service';
+import { BlogData } from '../../utils/interface';
 
 @Component({
   selector: 'app-create-blog',
@@ -31,8 +33,21 @@ export class CreateBlogComponent {
     image: new FormControl('' as any, Validators.required)
   });
 
+  constructor(private api: ApiHelperService){}
+
   onSubmit(ev:SubmitEvent) {
     console.log(ev);
+    this.blogForm.markAllAsTouched();
+    if(this.blogForm.invalid) return;
+    let data = {
+      title: this.blogForm.controls.title.value??"",
+      blogContent: this.blogForm.controls.content.value??"",
+      hashTags: this.blogForm.controls.tags.value?.split(",")??[],
+      image: this.blogForm.controls.image.value??""
+    } as BlogData
+    this.api.createBlog(data as BlogData).subscribe((data:BlogData) => {
+      console.log(data);
+    })
   }
 
   async onImagePicked(ev: Event) {

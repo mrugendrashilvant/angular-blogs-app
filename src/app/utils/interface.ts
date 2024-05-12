@@ -1,8 +1,9 @@
 export interface BlogData {
-    _id: string,
+    _id?: string,
     title: string,
     blogContent: string,
     hashTags: string[],
     image: string,
-    created: string
+    created?: string,
+    likes?: number
 }

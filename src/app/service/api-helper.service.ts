@@ -24,4 +24,8 @@ export class ApiHelperService {
     return this.http.get<BlogData>(this.BASE_API_URL+'blogs/'+id);
   }
 
+  createBlog(data: BlogData) {
+    return this.http.post<BlogData>(this.BASE_API_URL+"blogs", data);
+  }
+
 }
