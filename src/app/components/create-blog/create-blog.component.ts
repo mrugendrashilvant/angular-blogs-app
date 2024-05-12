@@ -28,10 +28,28 @@ export class CreateBlogComponent {
     title: new FormControl('', Validators.required),
     tags: new FormControl('', Validators.required),
     content: new FormControl('', Validators.required),
-    image: new FormControl(null, Validators.required)
+    image: new FormControl('' as any, Validators.required)
   });
 
   onSubmit(ev:SubmitEvent) {
     console.log(ev);
+  }
+
+  async onImagePicked(ev: Event) {
+    const element = ev.currentTarget as HTMLInputElement;
+    if (element.files){
+      const file = element.files[0];
+      const toBase64 = (file:File) => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+      });
+      let dataUrl = await toBase64(file);
+      if(dataUrl)
+        this.blogForm.patchValue({image: dataUrl});
+
+      console.log(this.blogForm.getRawValue());
+    }
   }
 }

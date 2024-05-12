@@ -15,7 +15,7 @@
             <textarea rows="5" formControlName="content" matInput placeholder="Type your content here..."></textarea>
           </mat-form-field>
           <div class="mb-4">
-            <input formControlName="image" type="file" required />
+            <input (change)="onImagePicked($event)" accept="image/png" type="file" required />
           </div>
           <div class="grid grid-cols-2 gap-4">
             <button class="w-full" mat-stroked-button color="warn" type="button">Cancel</button>
