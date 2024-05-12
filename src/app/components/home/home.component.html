@@ -17,7 +17,8 @@
                   </p>
                 </mat-card-content>
                 <mat-card-actions>
-                  <button [routerLink]="[blog._id]" mat-button>Read More</button>
+                  <button [routerLink]="[blog._id]" color="primary" mat-flat-button>Read More</button>
+                  <button (click)="deleteBlog(blog?._id??'')" mat-stroked-button color="warn">Delete</button>
                 </mat-card-actions>
               </mat-card>
         </ng-container>

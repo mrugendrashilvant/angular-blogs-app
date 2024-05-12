@@ -60,4 +60,15 @@ app.get("/blogs/:id", (req, res)=>{
     })
 })
 
+app.delete("/blogs/:id", (req, res)=>{
+    BlogModel.deleteOne({_id: req.params.id})
+    .then((data)=>{
+        res.status(200).json({message: "Blog is Deleted"})
+    })
+    .catch((err)=>{
+        res.status(500).json({message: "Couldn't find the blog"})
+        throw new Error(err);
+    })
+})
+
 module.exports = app;

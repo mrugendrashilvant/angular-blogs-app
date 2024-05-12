@@ -8,6 +8,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import { ApiHelperService } from '../../service/api-helper.service';
 import { BlogData } from '../../utils/interface';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-blog',
@@ -35,7 +36,8 @@ export class CreateBlogComponent {
 
   constructor(
     private api: ApiHelperService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar
     ){}
 
   onSubmit(ev:SubmitEvent) {
@@ -49,6 +51,9 @@ export class CreateBlogComponent {
     } as BlogData
     this.api.createBlog(data as BlogData).subscribe((data:BlogData) => {
       this.dialog.closeAll();
+      this.snackbar.open("Blog Created Successfully!", undefined, {
+        duration: 1000
+      })
     })
   }
 

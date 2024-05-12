@@ -28,4 +28,8 @@ export class ApiHelperService {
     return this.http.post<BlogData>(this.BASE_API_URL+"blogs", data);
   }
 
+  deleteBlog(id: string) {
+    return this.http.delete<{message: string}>(this.BASE_API_URL+`blogs/${id}`);
+  }
+
 }
