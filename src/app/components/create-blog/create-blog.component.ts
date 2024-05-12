@@ -33,10 +33,12 @@ export class CreateBlogComponent {
     image: new FormControl('' as any, Validators.required)
   });
 
-  constructor(private api: ApiHelperService){}
+  constructor(
+    private api: ApiHelperService,
+    private dialog: MatDialog
+    ){}
 
   onSubmit(ev:SubmitEvent) {
-    console.log(ev);
     this.blogForm.markAllAsTouched();
     if(this.blogForm.invalid) return;
     let data = {
@@ -46,7 +48,7 @@ export class CreateBlogComponent {
       image: this.blogForm.controls.image.value??""
     } as BlogData
     this.api.createBlog(data as BlogData).subscribe((data:BlogData) => {
-      console.log(data);
+      this.dialog.closeAll();
     })
   }
 

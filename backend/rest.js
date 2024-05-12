@@ -10,7 +10,8 @@ mongoose.connect("mongodb+srv://mrugendrashilvant16:4sf1RqPBT1vYUPiX@cluster0.km
 });
 
 const app = express();
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 const BlogModel = require("./schema");
 
 app.use((req,res,next)=>{
