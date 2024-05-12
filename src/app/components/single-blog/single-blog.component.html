@@ -1,8 +1,11 @@
 <ng-container *ngIf="blog">
-    <h1>{{blog.title}}</h1>
-    <div>
-        <span *ngFor="let tag of blog.hashTags; let last = last">
-            {{tag}}<span *ngIf="!last">,</span>
+    <div class="relative">
+        <img class="w-full" [alt]="blog.title" [src]="blog.image"/>
+        <p class="text-4xl font-bold mb-3">{{blog.title}}</p>
+    </div>
+    <div class="flex gap-1 mb-4">
+        <span class="!text-xs bg-lime-500 px-2 py-1 rounded-full" *ngFor="let tag of blog.hashTags; let last = last">
+            {{tag}}
         </span>
     </div>
     <div>
