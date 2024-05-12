@@ -1,0 +1,20 @@
+<mat-card class="example-card">
+    <mat-card-header class="mb-2">
+      <mat-card-title>{{blog.title}}</mat-card-title>
+      <mat-card-subtitle class="!flex gap-1">
+        <span class="!text-xs bg-lime-500 px-2 py-1 rounded-full" *ngFor="let tag of blog.hashTags; let last = last">
+            {{tag}}
+        </span>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="blog.image" [alt]="blog.title">
+    <mat-card-content>
+      <p class="truncate">
+        {{blog.blogContent}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="gap-3">
+      <button [routerLink]="[blog._id]" color="primary" mat-flat-button>Read More</button>
+      <button (click)="deleteBlog(blog?._id??'')" mat-stroked-button color="warn">Delete</button>
+    </mat-card-actions>
+  </mat-card>

@@ -52,7 +52,7 @@ export class CreateBlogComponent {
     this.api.createBlog(data as BlogData).subscribe((data:BlogData) => {
       this.dialog.closeAll();
       this.snackbar.open("Blog Created Successfully!", undefined, {
-        duration: 1000
+        duration: 3000
       })
     })
   }

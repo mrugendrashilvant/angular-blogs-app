@@ -1,26 +1,7 @@
 <ng-container *ngIf="blogs">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
         <ng-container *ngFor="let blog of blogs">
-            <mat-card class="example-card">
-                <mat-card-header>
-                  <mat-card-title>{{blog.title}}</mat-card-title>
-                  <mat-card-subtitle>
-                    <span *ngFor="let tag of blog.hashTags; let last = last">
-                        {{tag}}<span *ngIf="!last">,</span>
-                    </span>
-                  </mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image [src]="blog.image" [alt]="blog.title">
-                <mat-card-content>
-                  <p class="truncate">
-                    {{blog.blogContent}}
-                  </p>
-                </mat-card-content>
-                <mat-card-actions>
-                  <button [routerLink]="[blog._id]" color="primary" mat-flat-button>Read More</button>
-                  <button (click)="deleteBlog(blog?._id??'')" mat-stroked-button color="warn">Delete</button>
-                </mat-card-actions>
-              </mat-card>
+            <app-blog [blog]="blog"></app-blog>
         </ng-container>
     </div>
 </ng-container>
