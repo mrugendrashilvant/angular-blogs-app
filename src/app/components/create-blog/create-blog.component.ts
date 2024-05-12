@@ -48,8 +48,6 @@ export class CreateBlogComponent {
       let dataUrl = await toBase64(file);
       if(dataUrl)
         this.blogForm.patchValue({image: dataUrl});
-
-      console.log(this.blogForm.getRawValue());
     }
   }
 }
